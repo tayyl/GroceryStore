@@ -19,5 +19,6 @@ namespace WebApp.Models.InputModels.Home
         /// </summary>
         [StringLength(50)]
         public string Name { get; set; }
+        
     }
 }

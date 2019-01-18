@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using WebApp.Models.Category;
+using WebApp.Models.Product;
 
 namespace WebApp.App_Start
 {
@@ -14,8 +14,8 @@ namespace WebApp.App_Start
     {
        public AutoMapperConfig()
         {
-            CreateMap<Category, CategoryOutputModel>()
-                .ForMember(x => x.Info, d => d.MapFrom(s => $"{s.Id} {s.Name}"));
+            CreateMap<Product, ProductOutputModel>()
+                .ForMember(x => x.Info, d => d.MapFrom(s => $"{s.Id} {s.Name} {s.Barcode} {s.Type} {s.Description}"));
             
         }
     }

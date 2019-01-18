@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using WebApp.Models.InputModels.Home;
@@ -22,20 +21,14 @@ namespace WebApp.Controllers
     public class HomeController : Controller
     {
 
-        public ActionResult Index()
-        {
-            return View();
-        }
-        /*
-
         /// <summary>
         /// Pobierz dane
         /// </summary>
         /// <returns>Zwracany jest napis</returns>
-        [HttpGet]
+        //[System.Web.Mvc.HttpGet]
         //[Route("alamakota")]
-        [SwaggerResponse(HttpStatusCode.OK, Description = "zwracany kod")]
-        public async Task<IHttpActionResult> Get()
+        //[SwaggerResponse(HttpStatusCode.OK, Description = "zwracany kod")]
+        /*public async Task<IHttpActionResult> Get()
         {
             return Ok("to jest zapytanie get");
         }
@@ -45,7 +38,7 @@ namespace WebApp.Controllers
         /// </summary>
         /// <param name="id">Identyfikator obiektu</param>
         /// <returns></returns>
-        [HttpGet]
+        /*[HttpGet]
         public async Task<IHttpActionResult> GetById(int id)
         {
             return Ok($"to jest zapytanie get nr {id}");
@@ -65,7 +58,8 @@ namespace WebApp.Controllers
 
     
             return Ok($"Id: {model.Id}, Name: {model.Name}");*/
-        //}
+
+
 
     }
 }
