@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,6 +10,17 @@ namespace WebApplication1.Controllers
     public class HomeController : Controller
     {
         public ActionResult Index()
+        {
+            return View();
+        }
+        public ActionResult Index2()
+        {
+            var _entities = new Model.AppContext();
+            var model = _entities.Products;
+         
+            return View(model);
+        }
+        public ActionResult Index3()
         {
             return View();
         }
