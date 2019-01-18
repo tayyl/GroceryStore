@@ -9,8 +9,9 @@ namespace Model.Entities
     public class Order
     {
         public int Id { get; set; }
-        public string Number { get; set; }
+        public int Amount { get; set; }
         public DateTime CreatedDate { get; set; }
+
 
         public virtual ICollection<Product> Products { get; set; }
     }

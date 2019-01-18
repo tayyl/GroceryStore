@@ -75,7 +75,7 @@ namespace WebApp.App_Start
             #endregion
             #region Repositories
 
-            kernel.Bind<ICategoryRepository>().To<CategoryRepository>();
+            kernel.Bind<ICategoryRepository>().To<ProductRepository>();
 
             #endregion
         }

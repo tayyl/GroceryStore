@@ -5,7 +5,8 @@ using System.Web.Mvc;
 
 namespace MVCapp1.Controllers
 {
-    [Authorize]
+    //[Authorize]
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         public ActionResult Index()

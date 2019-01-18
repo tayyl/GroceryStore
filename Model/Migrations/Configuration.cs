@@ -18,26 +18,6 @@ namespace Model.Migrations
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
-            if (!context.Categories.Any(x => x.Name == "Category 1"))
-            {
-                context.Categories.Add(new Entities.Category()
-                {
-                    Name = "Category 1"
-                });
-                context.SaveChanges();
-            }
-            if (!context.Products.Any(x => x.Name == "Produkt 1"))
-            {
-                context.Products.Add(new Entities.Product()
-                {
-                    Name = "Produkt 1",
-                    Price = 15m,
-                    CategoryId = 1
-                });
-            }
-            context.SaveChanges();
-                
-            
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Model.Configurations
         public OrderConfiguration()
         {
             Property(x => x.Id).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
-            Property(x => x.Number).HasMaxLength(50);
+            //Property(x => x.Amount);
             HasMany(x => x.Products).WithMany(x => x.Orders);
         }
     }
