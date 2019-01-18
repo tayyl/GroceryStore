@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebApp</name>
+    </assembly>
+    <members>
+        <member name="M:WebApp.App_Start.NinjectWebCommon.Start">
+            <summary>
+            Starts the application
+            </summary>
+        </member>
+        <member name="M:WebApp.App_Start.NinjectWebCommon.Stop">
+            <summary>
+            Stops the application.
+            </summary>
+        </member>
+        <member name="M:WebApp.App_Start.NinjectWebCommon.CreateKernel">
+            <summary>
+            Creates the kernel that will manage your application.
+            </summary>
+            <returns>The created kernel.</returns>
+        </member>
+        <member name="M:WebApp.App_Start.NinjectWebCommon.RegisterServices(Ninject.IKernel)">
+            <summary>
+            Load your modules or register your services here!
+            </summary>
+            <param name="kernel">The kernel.</param>
+        </member>
+        <member name="T:WebApp.Controllers.HomeController">
+            <summary>
+            Główny kontroler
+            </summary>
+        </member>
+        <member name="P:WebApp.Models.InputModels.Home.HomeInputModel.Id">
+            <summary>
+            Identyfikator
+            </summary>
+        </member>
+        <member name="P:WebApp.Models.InputModels.Home.HomeInputModel.Name">
+            <summary>
+            Nazwa elementu
+            </summary>
+        </member>
+    </members>
+</doc>
