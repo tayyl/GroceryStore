@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using Model.Entities;
 
 namespace WebApplication1.Models
 {
@@ -82,5 +83,10 @@ namespace WebApplication1.Models
     {
         public string SelectedProvider { get; set; }
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
+    }
+
+    public class ShowCartViewModel
+    {
+        public Cart Cart { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Model.Entities;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace WebApplication1.Models
@@ -109,4 +110,5 @@ namespace WebApplication1.Models
         [Display(Name = "Adres e-mail")]
         public string Email { get; set; }
     }
+
 }

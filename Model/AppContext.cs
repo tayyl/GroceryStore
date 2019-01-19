@@ -14,6 +14,7 @@ namespace Model
 {  // Możesz dodać dane profilu dla użytkownika, dodając więcej właściwości do klasy ApplicationUser. Odwiedź stronę https://go.microsoft.com/fwlink/?LinkID=317594, aby dowiedzieć się więcej.
     public class ApplicationUser : IdentityUser
     {
+        public virtual Cart Cart { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Element authenticationType musi pasować do elementu zdefiniowanego w elemencie CookieAuthenticationOptions.AuthenticationType
@@ -30,6 +31,7 @@ namespace Model
         public DbSet<Order> Orders { get; set; }
         public DbSet<Nutrient> Nutrients { get; set; }
         public DbSet<Price> Prices { get; set; }
+        public DbSet<Cart> Carts { get; set; }
 
         public AppContext() : base("AppConnection", throwIfV1Schema: false)
         {
@@ -43,6 +45,7 @@ namespace Model
             modelBuilder.Configurations.Add(new ShopConfiguration());
             modelBuilder.Configurations.Add(new NutrientConfiguration());
             modelBuilder.Configurations.Add(new PriceConfiguration());
+            modelBuilder.Configurations.Add(new CartConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
