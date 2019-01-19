@@ -15,20 +15,6 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
-        public ActionResult Index2()
-        {
-            var _entities = new Model.AppContext();
-            var model = _entities.Products;
-         
-            return View(model);
-        }
-        public ActionResult Index3()
-        {
-            var _entities = new Model.AppContext();
-            var model = _entities.Products.Include(c => c.Nutrient);
-            return View(model);
-        }
-
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
