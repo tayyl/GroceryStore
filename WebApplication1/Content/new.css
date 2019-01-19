@@ -1,0 +1,245 @@
+﻿.navbar-collapse {
+    float: right !important;
+}
+
+.navbar-header {
+    position: relative;
+    left: -25px;
+}
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form{
+    max-width:930px;
+    padding-right:50px;
+}
+.naglowek {
+    max-height: 55px;
+    max-width: 1150px;
+    margin: 0 auto;
+    position: static !important;
+    background-color: #45155a !important;
+    border: none !important;
+    font-family: 'Lato', sans-serif !important;
+    font-weight: lighter;
+    font-size: 16px;
+    margin-bottom: 20px !important;
+}
+
+.container h2 {
+    margin: 0;
+    text-indent: 0;
+    padding: 0;
+}
+
+@media (max-width: 768px) {
+    .navbar-collapse {
+        float: left !important;
+    }
+
+    .naglowek {
+        max-width: 1150px;
+        max-height: 5555px;
+    }
+}
+
+.navbar img {
+    position: relative;
+    top: -25px;
+    left: -40px;
+    z-index: 999;
+    float: left;
+    
+}
+.navbar a:hover{
+    text-decoration:none;
+}
+#myCarousel
+{
+    padding:0;
+   
+}
+.product {
+    font-family: 'Roboto';
+    padding: 0;
+    padding-top: 30px;
+    text-align: center;
+    -webkit-box-shadow: 0px 4px 13px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 4px 13px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 4px 13px 0px rgba(0,0,0,0.5);
+    border-radius: 15px 15px;
+}
+
+    .product .zdj {
+        margin: 0 auto;
+        margin-top: 70px;
+        max-width: 150px;
+        height: 150px;
+        clear: both;
+    }
+.carousel-control.left, .carousel-control.right{
+    top:25px;
+}
+
+.TextBox {
+    background-color: rgba(0, 0, 0,0.5);
+  
+}
+    .TextBox p, .TextBox h1 {
+        opacity: 1;
+    } 
+.product_inside {
+    color: white;
+    font-weight: bold;
+    background-color: #45155a;
+}
+
+.product_nazwa {
+    text-transform: uppercase;
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+.shop_nazwa {
+    text-transform: uppercase;
+    font-size: 14px;
+    width: 130px;
+    margin: 0;
+    margin-left: 10px;
+    float: left;
+    border-radius: 20px 20px;
+}
+
+.shop_date {
+    margin: 0;
+    width: 130px;
+    float: left;
+    margin-left: 20px;
+    text-transform: uppercase;
+    font-size: 14px;
+    border-radius: 20px 20px;
+}
+
+.product_opis {
+    margin: 20px 0;
+}
+
+.value_kcal_text, .value_bialka_text, .value_weglowodany_text, .value_tluszcze_text {
+    float: left;
+    border: 2px solid #45155a;
+    border-radius: 10px 10px;
+    margin-left: 5px;
+}
+
+.value_kcal, .value_bialka, .value_weglowodany, .value_tluszcze {
+    height: 20px;
+    border-radius: 6px 6px;
+}
+
+.values_rest {
+    float: left;
+}
+
+#values_rest_text {
+    margin: 0;
+}
+
+.values {
+    width: 280px;
+    margin: 0 auto;
+}
+
+.shops {
+    width: 300px;
+    margin: 0 auto;
+}
+
+.values p {
+    margin: 5px;
+    font-size: 10px;
+}
+
+
+.product_kod {
+    font-size: 30px;
+    letter-spacing: 5px;
+}
+
+.naglowek a {
+    color: white !important;
+}
+
+.col-md-3 {
+    z-index: 1;
+    border-radius: 10px 10px;
+    margin-top: 0px;
+    margin-bottom: 25px;
+    min-width: 330px;
+    text-align: center;
+    -webkit-box-shadow: 0px 4px 13px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 4px 13px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 4px 13px 0px rgba(0,0,0,0.5);
+    margin-left: 30px;
+    margin-right: 30px;
+    transition: 0.5s;
+    background-color: white;
+}
+
+    .col-md-3 #pig {
+        max-width: 170px;
+        margin: 15px auto;
+        padding: 20px;
+        border: 3px solid rgb(244,191,26);
+        border-radius: 100px 100px;
+    }
+
+    .col-md-3 #groceries {
+        max-width: 170px;
+        margin: 15px auto;
+        padding: 20px;
+        border: 3px solid red;
+        border-radius: 100px 100px;
+    }
+
+    .col-md-3 #clipboard {
+        max-width: 170px;
+        margin: 15px auto;
+        padding: 20px;
+        border: 3px solid green;
+        border-radius: 100px 100px;
+    }
+.bar {
+    z-index:-2;
+    position:relative;
+    top: 35px;
+    max-width: 1150px;
+    margin: 5px auto;
+    min-height: 55px;
+    background-color: #45155a !important;
+}
+footer {
+    max-width: 1150px;
+    margin: 10px auto;
+    min-height: 55px;
+    background-color: #45155a !important;
+}
+
+
+.col-md-3:hover {
+    transition: 0.5s;
+    -webkit-box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.65);
+    -moz-box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.65);
+    box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.65);
+}
+.atepeppers{
+    margin-top: 7px;
+}
+.atepeppers a{
+    margin-top: 10px !important;
+}
+.atepeppers a:hover
+{
+    text-decoration:none;
+}
+.atepeppers {
+    font-size: 30px;
+    font-family: 'Ryman Eco';
+}
+ 

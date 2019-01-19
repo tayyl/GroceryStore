@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Linq;
+using System.Data.Entity;
 
 namespace WebApplication1.Controllers
 {
@@ -22,7 +24,9 @@ namespace WebApplication1.Controllers
         }
         public ActionResult Index3()
         {
-            return View();
+            var _entities = new Model.AppContext();
+            var model = _entities.Products.Include(c => c.Nutrient);
+            return View(model);
         }
 
         public ActionResult About()

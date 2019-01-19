@@ -1,80 +1,78 @@
-﻿@model Model.Entities.Product
+﻿@model IEnumerable<Model.Entities.Product>
 
 @{
     ViewBag.Title = "Index3";
+    int licznik = 1;
 }
 
 <h2>Index3</h2>
 
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Product</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Barcode, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Barcode, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Barcode, "", new { @class = "text-danger" })
+<div class="row ">
+    <h2>Prezentacja produktów</h2>
+    @foreach (var item in Model)
+    {
+        <div class="help">
+            <div class="product col-md-3">
+                <div class="product_nazwa product_inside"> @Html.DisplayFor(modelItem => item.Name)</div>
+                <div class="shops">
+                    <div class="shop_nazwa product_inside">
+                        :
+                        @*Html.DisplayFor(modelItem => item.Price.Shop.nazwa)*@
+                    </div>
+                    <div class="shop_date product_inside">
+                        :
+                        @*Html.DisplayFor(modelItem => item.Price.Shop.data)*@
+                    </div>
+                </div>
+                <div class="zdj">
+                    <img src="data:image;base64,@System.Convert.ToBase64String(item.Image)" width="150" height="150" />
+                </div>
+                <div class="product_opis">
+                    @Html.DisplayFor(modelItem => item.Description)
+                </div>
+                <div class="values">
+                    <div class="value_kcal_text">
+                        <p>Wartość <br /> Energetyczna</p>
+                        <div class="value_kcal product_inside">
+                            @Html.DisplayFor(modelItem => item.Nutrient.CalorifiValue)
+                        </div>
+                    </div>
+                    <div class="values_rest">
+                        <p id="values_rest_text">*wartość odżywcza w 100g produktu</p>
+                        <div class="value_tluszcze_text">
+                            <p>Tłuszcze</p>
+                            <div class="value_tluszcze product_inside">
+                                @Html.DisplayFor(modelItem => item.Nutrient.SaturatedFat)
+                            </div>
+                        </div>
+                        <div class="value_bialka_text">
+                            <p>Białka</p>
+                            <div class="value_bialka product_inside">
+                                @Html.DisplayFor(modelItem => item.Nutrient.Protein)
+                            </div>
+                        </div>
+                        <div class="value_weglowodany_text">
+                            <p>Węglowodany</p>
+                            <div class="value_weglowodany product_inside">
+                                @Html.DisplayFor(modelItem => item.Nutrient.Carbohydrate)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="clear: both;" class="product_kod">
+                    @Html.DisplayFor(modelItem => item.Barcode)
+                </div>
             </div>
         </div>
+    }
+        @{ 
+            if (licznik % 3 == 0 && licznik > 0)
+            {
+                Html.Raw("<span style='float: clear: both;'></span>");
+                licznik = 0;
+            }
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PriceId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PriceId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PriceId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
+            licznik++;
+            }
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
