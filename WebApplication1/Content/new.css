@@ -29,8 +29,11 @@
     padding: 0;
 }
 @media (max-width: 1200px){
+    .navbar-collapse {
+        float: left !important;
+    }
     .naglowek {
-        max-width: 950px;
+        max-width: 1100px;
         margin: 0 auto;
         position: static !important;
         background-color: #45155a !important;
@@ -49,7 +52,7 @@
     }
 
     .naglowek {
-        max-width: 950px;
+        max-width: 1000px;
         margin: 0 auto;
         position: static !important;
         background-color: #45155a !important;
@@ -66,7 +69,7 @@
     }
 
     .naglowek {
-        max-width: 950px;
+        max-width: 990px;
         max-height: 5555px;
         margin: 0 auto;
         position: static !important;
@@ -281,4 +284,20 @@ footer {
     font-size: 30px;
     font-family: 'Ryman Eco';
 }
- 
+
+#koszyk {
+    width: 55px;
+    height: 55px;
+    background-color: #330a46;
+}
+#koszyk:hover {
+        background-color: #45155a;
+        cursor: pointer;
+}
+    #koszyk img {
+        left: -5px;
+        top: -5px;
+    }
+li a, li a:hover, li a:active, li a:link{
+    text-decoration: none;
+}

@@ -74,7 +74,7 @@ namespace WebApplication1.Controllers
                 }
                 product.Image = imgData;
                 price.Product = product;
-                price.CreationDate = System.DateTime.Now;
+                price.CreationDate = System.DateTime.Today;
                 nutrient.Product = product;
                 product.Nutrient = nutrient;
                 //product.Prices = new List<Price> { price };
@@ -158,11 +158,20 @@ namespace WebApplication1.Controllers
             if (ModelState.IsValid)
             {
                 byte[] imgData;
-                using (BinaryReader reader = new BinaryReader(file.InputStream))
+                if (file != null)
                 {
-                    imgData = reader.ReadBytes((int)file.InputStream.Length);
+                    using (BinaryReader reader = new BinaryReader(file.InputStream))
+                    {
+                        imgData = reader.ReadBytes((int)file.InputStream.Length);
+                    }
                 }
+                else
+                {
+                    imgData = (await db.Products.FindAsync(product.Id)).Image;
+                }
+
                 product.Image = imgData;
+
                 db.Entry(product).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

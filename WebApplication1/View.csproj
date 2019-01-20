@@ -221,6 +221,7 @@
     <Content Include="images\clipboard.png" />
     <Content Include="images\coins-money-stack %282%29.png" />
     <Content Include="images\groceries.png" />
+    <Content Include="images\koszyk.png" />
     <Content Include="images\logoepepper.png" />
     <Content Include="images\loopka.png" />
     <Content Include="images\ryby.jpg" />
