@@ -26,23 +26,20 @@
                     }
                         <div class="product_nazwa product_inside"> @Html.DisplayFor(modelItem => item.Name)</div>
                     
-                    <div class="shop_nazwa product_inside">
+                        <div class="shop_nazwa product_inside">
+                            @Html.DisplayFor(model => item.Prices.ElementAtOrDefault(0).Value, new { htmlAttributes = new { @class = "form-control" } })
 
-                        @*foreach (var Nutrient in Model) {
-            @Html.DisplayFor(modelItem => Nutrient.Prices.Value);
-                }*@
-                    </div>
-                    <div class="shop_date product_inside">
-                        @*foreach (var Nutrient in Model) {
-                @Html.DisplayFor(modelItem => item.Prices.Date);
-            }*@
-                    </div>
+
+                        </div>
+                        <div class="shop_date product_inside">
+                            @Html.DisplayFor(model => item.Prices.ElementAtOrDefault(0).CreationDate, new { htmlAttributes = new { @class = "form-control" } })
+
+                        </div>
                 </div>
                     <div class="zdj">
-                        @*@if (item.Image != null)
-                        {
+                      
                             <img src="data:image;base64,@System.Convert.ToBase64String((byte[]) item.Image)" width="150" height="150" />
-                        }*@
+                        
                     </div>
                     <div class="product_opis">
                         @Html.DisplayFor(modelItem => item.Description)
