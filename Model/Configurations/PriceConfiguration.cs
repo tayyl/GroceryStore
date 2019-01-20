@@ -15,6 +15,8 @@ namespace Model.Configurations
         {
             Property(x => x.Id).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             //Property(x => x.Amount);
+            
+         //   HasRequired(x => x.Product).WithMany(x => x.Prices);
         }
     }
 }

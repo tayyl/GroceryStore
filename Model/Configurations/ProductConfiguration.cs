@@ -15,7 +15,7 @@ namespace Model.Configurations
             Property(x => x.Id).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.Name).HasMaxLength(50);
             Property(x => x.Image).IsOptional();
-            HasOptional(x => x.Nutrient).WithOptionalPrincipal (x => x.Product).WillCascadeOnDelete();
+            HasOptional(x => x.Nutrient).WithOptionalPrincipal(x => x.Product);
         }
     }
 }

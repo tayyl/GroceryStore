@@ -33,6 +33,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Product/Details/5
+        [Authorize]
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -48,6 +49,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Product/Create
+        [Authorize]
         public ActionResult Create()
         {
 
@@ -59,6 +61,7 @@ namespace WebApplication1.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<ActionResult> Create(/*[Bind(Include = "Id,Barcode,Name,Description,Image,Type,PriceId")]*/ Product product, Nutrient nutrient, Collection<Price> prices, Price price, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
@@ -85,6 +88,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Product/Edit/5
+        [Authorize]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -104,6 +108,7 @@ namespace WebApplication1.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<ActionResult> Edit([Bind(Include = "Id,Barcode,Name,Description,Image,Type,PriceId")] Product product, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
@@ -122,6 +127,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Product/Delete/5
+        [Authorize]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -137,10 +143,17 @@ namespace WebApplication1.Controllers
         }
 
         // POST: Product/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
+            CartItem cartitem = await db.CartItems.Where(o => o.Product.Id == id).SingleOrDefaultAsync();
+            if (cartitem != null) db.CartItems.Remove(cartitem);
+            Nutrient nutrient = await db.Nutrients.FindAsync(id);
+            db.Nutrients.Remove(nutrient);
+            Price price = await db.Prices.FindAsync(id);
+            db.Prices.Remove(price);
             Product product = await db.Products.FindAsync(id);
             db.Products.Remove(product);
             await db.SaveChangesAsync();
@@ -156,6 +169,7 @@ namespace WebApplication1.Controllers
             base.Dispose(disposing);
         }
 
+        [Authorize]
         public async Task<ActionResult> AddToCart(int id)
         {
             // TODO: Code duplicate form CartController

@@ -28,15 +28,54 @@
     text-indent: 0;
     padding: 0;
 }
+@media (max-width: 1200px){
+    .naglowek {
+        max-width: 950px;
+        margin: 0 auto;
+        position: static !important;
+        background-color: #45155a !important;
+        border: none !important;
+        font-family: 'Lato', sans-serif !important;
+        font-weight: lighter;
+        font-size: 16px;
+        margin-bottom: 20px !important;
+    }
+}
 
-@media (max-width: 768px) {
+
+@media (max-width: 1000px) {
     .navbar-collapse {
         float: left !important;
     }
 
     .naglowek {
-        max-width: 1150px;
+        max-width: 950px;
+        margin: 0 auto;
+        position: static !important;
+        background-color: #45155a !important;
+        border: none !important;
+        font-family: 'Lato', sans-serif !important;
+        font-weight: lighter;
+        font-size: 16px;
+        margin-bottom: 20px !important;
+    }
+}
+@media (max-width: 992px) {
+    .navbar-collapse {
+        float: left !important;
+    }
+
+    .naglowek {
+        max-width: 950px;
         max-height: 5555px;
+        margin: 0 auto;
+        position: static !important;
+        background-color: #45155a !important;
+        border: none !important;
+        font-family: 'Lato', sans-serif !important;
+        font-weight: lighter;
+        font-size: 16px;
+        margin-bottom: 20px !important;
     }
 }
 
