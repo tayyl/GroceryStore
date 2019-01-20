@@ -64,9 +64,9 @@
     <Compile Include="Entities\Price.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Shop.cs" />
-    <Compile Include="Migrations\201901181811397_init.cs" />
-    <Compile Include="Migrations\201901181811397_init.Designer.cs">
-      <DependentUpon>201901181811397_init.cs</DependentUpon>
+    <Compile Include="Migrations\201901192319141_test.cs" />
+    <Compile Include="Migrations\201901192319141_test.Designer.cs">
+      <DependentUpon>201901192319141_test.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,8 +76,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901181811397_init.resx">
-      <DependentUpon>201901181811397_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901192319141_test.resx">
+      <DependentUpon>201901192319141_test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

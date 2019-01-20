@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.Mvc;
 using Model;
 using Model.Entities;
+using System.Diagnostics;
+using System.Collections.ObjectModel;
 
 namespace WebApplication1.Controllers
 {
@@ -48,11 +50,18 @@ namespace WebApplication1.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Barcode,Name,Description,Image,Type,PriceId")] Product product)
+        public async Task<ActionResult> Create(/*[Bind(Include = "Id,Barcode,Name,Description,Image,Type,PriceId")]*/ Product product, Nutrient nutrient, Collection<Price> prices, Price price)
         {
             if (ModelState.IsValid)
             {
+                price.Product = product;
+                price.CreationDate = DateTime.Now;
+                nutrient.Product = product;
+                product.Nutrient = nutrient;
+                //product.Prices = new List<Price> { price };
                 db.Products.Add(product);
+                db.Nutrients.Add(nutrient);
+                db.Prices.Add(price);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }

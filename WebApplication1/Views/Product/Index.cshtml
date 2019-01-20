@@ -28,18 +28,21 @@
                     
                     <div class="shop_nazwa product_inside">
 
-                        @*foreach (var item2 in Model) {
-            @Html.DisplayFor(modelItem => item2.Prices.Value);
+                        @*foreach (var Nutrient in Model) {
+            @Html.DisplayFor(modelItem => Nutrient.Prices.Value);
                 }*@
                     </div>
                     <div class="shop_date product_inside">
-                        @*foreach (var item2 in Model) {
+                        @*foreach (var Nutrient in Model) {
                 @Html.DisplayFor(modelItem => item.Prices.Date);
             }*@
                     </div>
                 </div>
                     <div class="zdj">
-                        <img src="data:image;base64,@System.Convert.ToBase64String(item.Image)" width="150" height="150" />
+                        @*@if (item.Image != null)
+                        {
+                            <img src="data:image;base64,@System.Convert.ToBase64String((byte[]) item.Image)" width="150" height="150" />
+                        }*@
                     </div>
                     <div class="product_opis">
                         @Html.DisplayFor(modelItem => item.Description)

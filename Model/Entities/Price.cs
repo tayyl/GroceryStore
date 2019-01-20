@@ -10,8 +10,7 @@ namespace Model.Entities
     {
         public int Id { get; set; }
         public int Value { get; set; }
-        DateTime Date { get; set; }
-        //public virtual Product Product { get; set; }
-        public virtual ICollection<Product> Products { get; set; }
+        public DateTime CreationDate { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

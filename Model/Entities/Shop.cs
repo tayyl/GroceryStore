@@ -10,7 +10,6 @@ namespace Model.Entities
     {
         public int Id { get; set; }
         public string Brand { get; set; }
-
         public virtual ICollection<Price> Prices { get; set; }
     }
 }

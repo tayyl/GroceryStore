@@ -12,10 +12,9 @@ namespace Model.Entities
         public int Barcode { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public byte[] Image { get; set; }
+        public byte?[] Image { get; set; }
         public string Type { get; set; }
 
-        public int PriceId { get; set; }
         public virtual ICollection<Price> Prices{ get; set; }
         //public int NutrientId { get; set; }
         public virtual Nutrient Nutrient { get; set; }
