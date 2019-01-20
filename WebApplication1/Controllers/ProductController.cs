@@ -159,34 +159,45 @@ namespace WebApplication1.Controllers
         public async Task<ActionResult> AddToCart(int id)
         {
             // TODO: Code duplicate form CartController
-            CartRepository cartRepository = new CartRepository();
+            CartsRepository cartRepository = new CartsRepository();
+            CartItemsRepository cartItemsRepository = new CartItemsRepository();
             string currentUserId = User.Identity.GetUserId();
             UserManager<ApplicationUser> manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
             ApplicationUser currentUser = manager.FindById(currentUserId);
             if (currentUser is null)
                 return Redirect("../../Account/Login");
-            
-            //Cart cart = await cartRepository.GetCart(currentUser.CartId);
-            //if (cart is null)
-            //{
-            //    cart = new Cart();
-            //    //db.Carts.Add(cart); 
-            //}
+
+            Cart cart = await db.Carts.Where(o => o.Id == currentUser.CartId).SingleOrDefaultAsync();
+            if (cart == null)
+            {
+                cart = new Cart();
+                db.Entry(cart).State = EntityState.Added;
+                cart.Id = db.Users.Max(o => o.CartId) + 1;
+                currentUser.CartId = cart.Id;
+                db.Entry(currentUser).State = EntityState.Modified;
+
+            }
             Product product = db.Products.Where(o => o.Id == id).Single();
-            var query = from d in db.CartItems
-                            where d.Product == product
-                            where d.TempId == currentUser.Id
-                            select d;
-            var item = query.ToList();
-            if (item[0] != default(CartItem))
-                item[0].Amount++;
+            CartItem item = await db.CartItems.Where(o => o.Product.Id == product.Id).SingleOrDefaultAsync();
+
+            if (item != default(CartItem))
+            {
+                item.Amount++;
+                db.Entry(item).State = EntityState.Modified;
+            }
             else
             {
-                var newItem = new CartItem(product);
-                newItem.TempId = currentUser.Id;
-                
-                db.CartItems.Add(newItem);
+                item = new CartItem();
+                db.Entry(item).State = EntityState.Added;
+                item.Product = product;
+                item.CartId = cart.Id;
+                cart.CartItems.Add(item);
+                item.Cart = cart;
+                if (db.Entry(cart).State != EntityState.Added)
+                    db.Entry(cart).State = EntityState.Modified;
             }
+
+            
             try
             {
                 await db.SaveChangesAsync();

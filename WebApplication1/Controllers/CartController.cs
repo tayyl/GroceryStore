@@ -25,7 +25,7 @@ namespace WebApplication1.Controllers
         }
         public async Task<ActionResult> Index()
         {
-            CartRepository context = new CartRepository();
+            CartsRepository context = new CartsRepository();
             var currentUser = CheckCurrentUser();
             if (currentUser is null)
                 return Redirect("../Account/Login");
@@ -38,7 +38,7 @@ namespace WebApplication1.Controllers
 
         public async Task<ActionResult> Index(Cart cart)
         {
-            CartRepository repository = new CartRepository();
+            CartsRepository repository = new CartsRepository();
             var result = await repository.SaveCartAsync(cart);
             if (result is false)
                 return View(); // TODO: Fix return on negative result

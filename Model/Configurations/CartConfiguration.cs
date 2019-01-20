@@ -11,9 +11,12 @@ namespace Model.Configurations
     public class CartConfiguration : EntityTypeConfiguration<Cart>
     {
         public CartConfiguration()
-        { 
-            Property(x => x.Id).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
-            HasMany(x => x.Items);
+        {
+            HasKey(x => x.Id)
+                .Property(x => x.Id)
+                .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+
+            
         }
     }
 }

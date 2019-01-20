@@ -12,7 +12,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Repository.Concrete
 {
-    public class CartRepository : BaseRepository, ICartsRepository
+    public class CartsRepository : BaseRepository, ICartsRepository
     {
         public Task<bool> DeleteCartAsync(Cart Cart)
         {
@@ -44,7 +44,6 @@ namespace Repository.Concrete
             try
             {
                 context.Entry(Cart).State = Cart.Id == default(int) ? EntityState.Added : EntityState.Modified;
-
                 await context.SaveChangesAsync();
             }
             catch (Exception)

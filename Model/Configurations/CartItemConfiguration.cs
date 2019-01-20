@@ -13,9 +13,9 @@ namespace Model.Configurations
     {
         public CartItemConfiguration()
         {
+            //HasKey(x => x.Id);
             Property(x => x.Id).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
-            
+            HasRequired(t => t.Cart).WithMany(c => c.CartItems).HasForeignKey(t => t.CartId).WillCascadeOnDelete(true);
         }
     }
-
 }
