@@ -1,91 +1,118 @@
 ﻿@using Microsoft.AspNet.Identity
-@model IEnumerable<Model.Entities.Product>
+@using X.PagedList.Mvc;
+@using X.PagedList;
+@*@model PagedList.IPagedList<Model.Entities.Product>*@
+@model  IEnumerable<Model.Entities.Product>
+
 
 @{
-    ViewBag.Title = "Index3";
+    ViewBag.Title = "Artykuły";
     int licznik = 1;
 }
 
-<h2>Index3</h2>
 
 
+<h1 style=" text-align: center; padding-bottom: 15px; ">Prezentacja produktów</h1>
 <div class="row ">
-    <h2>Prezentacja produktów</h2>
+
+
+    <p>
+        @using (Html.BeginForm("Index", "Produkt", FormMethod.Get))
+        {
+            <div class="Search_Engine" style=" text-align:center; padding-bottom: 20px;">
+                @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                <input type="submit" value="Szukaj!" />
+            </div>
+        }
+    </p>
+    @Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+    @Html.ActionLink("Enrollment Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+
     @foreach (var item in Model)
     {
+
         <div class="help">
             <div class="product col-md-3">
                 <div class="shops">
+
                     @if (Request.IsAuthenticated)
                     {
-                    <div class="product_edit_login">
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                    </div>
+                        <div class="product_edit_login">
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </div>
                     }
-                        <div class="product_nazwa product_inside"> @Html.DisplayFor(modelItem => item.Name)</div>
-                    
-                        <div class="shop_nazwa product_inside">
-                            @Html.DisplayFor(model => item.Prices.ElementAtOrDefault(0).Value, new { htmlAttributes = new { @class = "form-control" } })
+                    <div class="product_nazwa product_inside">
+                        @Html.DisplayFor(modelItem => item.Name, new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+
+                    </div>
+
+                    <div class="shop_nazwa product_inside">
+                        @Html.DisplayFor(model => item.Prices.ElementAtOrDefault(0).Value, new { htmlAttributes = new { @class = "form-control" } })
 
 
-                        </div>
-                        <div class="shop_date product_inside">
-                            @Html.DisplayFor(model => item.Prices.ElementAtOrDefault(0).CreationDate, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <div class="shop_date product_inside">
+                        @Html.DisplayFor(model => item.Prices.ElementAtOrDefault(0).CreationDate, new { htmlAttributes = new { @class = "form-control" } })
 
-                        </div>
+                    </div>
                 </div>
-                    <div class="zdj">
-                      
-                            <img src="data:image;base64,@System.Convert.ToBase64String((byte[]) item.Image)" width="150" height="150" />
-                        
-                    </div>
-                    <div class="product_opis">
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </div>
-                    <div class="values">
-                        <div class="value_kcal_text">
-                            <p>Wartość <br /> Energetyczna</p>
-                            <div class="value_kcal product_inside">
-                                @Html.DisplayFor(modelItem => item.Nutrient.CalorifiValue)
-                            </div>
-                        </div>
-                        <div class="values_rest">
-                            <p id="values_rest_text">*wartość odżywcza w 100g produktu</p>
-                            <div class="value_tluszcze_text">
-                                <p>Tłuszcze</p>
-                                <div class="value_tluszcze product_inside">
-                                    @Html.DisplayFor(modelItem => item.Nutrient.SaturatedFat)
-                                </div>
-                            </div>
-                            <div class="value_bialka_text">
-                                <p>Białka</p>
-                                <div class="value_bialka product_inside">
-                                    @Html.DisplayFor(modelItem => item.Nutrient.Protein)
-                                </div>
-                            </div>
-                            <div class="value_weglowodany_text">
-                                <p>Węglowodany</p>
-                                <div class="value_weglowodany product_inside">
-                                    @Html.DisplayFor(modelItem => item.Nutrient.Carbohydrate)
-                                </div>
-                            </div>
+                <div class="zdj">
+
+                    <img src="data:image;base64,@System.Convert.ToBase64String((byte[]) item.Image)" width="150" height="150" />
+
+                </div>
+                <div class="product_opis">
+                    @Html.DisplayFor(modelItem => item.Description)
+                </div>
+                <div class="values">
+                    <div class="value_kcal_text">
+                        <p>Wartość <br /> Energetyczna</p>
+                        <div class="value_kcal product_inside">
+                            @Html.DisplayFor(modelItem => item.Nutrient.CalorifiValue)
                         </div>
                     </div>
-                    <div style="clear: both;" class="product_kod">
-                        @Html.DisplayFor(modelItem => item.Barcode)
+                    <div class="values_rest">
+                        <p id="values_rest_text">*wartość odżywcza w 100g produktu</p>
+                        <div class="value_tluszcze_text">
+                            <p>Tłuszcze</p>
+                            <div class="value_tluszcze product_inside">
+                                @Html.DisplayFor(modelItem => item.Nutrient.SaturatedFat)
+                            </div>
+                        </div>
+                        <div class="value_bialka_text">
+                            <p>Białka</p>
+                            <div class="value_bialka product_inside">
+                                @Html.DisplayFor(modelItem => item.Nutrient.Protein)
+                            </div>
+                        </div>
+                        <div class="value_weglowodany_text">
+                            <p>Węglowodany</p>
+                            <div class="value_weglowodany product_inside">
+                                @Html.DisplayFor(modelItem => item.Nutrient.Carbohydrate)
+                            </div>
+                        </div>
                     </div>
+                </div>
+                <div style="clear: both;" class="product_kod">
+                    @Html.DisplayFor(modelItem => item.Barcode)
                 </div>
             </div>
-            }
-            @{
-                if (licznik % 3 == 0 && licznik > 0)
-                {
-                    Html.Raw("<span style='float: clear: both;'></span>");
-                    licznik = 0;
-                }
 
-                licznik++;
-            }
         </div>
+    }
+    @{
+        if (licznik % 3 == 0 && licznik > 0)
+        {
+            Html.Raw("<span style='float: clear: both;'></span>");
+            licznik = 0;
+        }
+
+        licznik++;
+    }
+
+
+</div>
+
+@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page }))

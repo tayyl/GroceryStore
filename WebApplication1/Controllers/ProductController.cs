@@ -13,6 +13,10 @@ using System.Diagnostics;
 using System.Collections.ObjectModel;
 using System.Web.UI.WebControls;
 using System.IO;
+using PagedList;
+//using X.PagedList.Mvc;
+//using X.PagedList;
+using Repository.Concrete;
 
 namespace WebApplication1.Controllers
 {
@@ -21,9 +25,27 @@ namespace WebApplication1.Controllers
         private Model.AppContext db = new Model.AppContext();
 
         // GET: Product
+        /*
         public async Task<ActionResult> Index()
         {
             return View(await db.Products.ToListAsync());
+        }
+        */
+        private ProductRepository productRepository = new ProductRepository();
+        public async Task<ActionResult> Index(int? page)
+        {
+            {
+                var products = await productRepository.GetProductsAsync(); //returns IQueryable<Product> representing an unknown number of products. a thousand maybe?
+
+                var pageNumber = page ?? 1; // if no page was specified in the querystring, default to the first page (1)
+                var onePageOfProducts = products.ToPagedList(pageNumber, 25); // will only contain 25 products max because of the pageSize
+
+                ViewBag.OnePageOfProducts = onePageOfProducts;
+                //return View(await Products.ToListAsync());
+                return View(products.ToPagedList(pageNumber, 25));
+            }
+           
+            //return View(products.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Product/Details/5
