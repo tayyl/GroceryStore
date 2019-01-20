@@ -56,7 +56,7 @@
     <Compile Include="Abstract\ICartsRepository.cs" />
     <Compile Include="Abstract\IProductRepository.cs" />
     <Compile Include="Concrete\BaseRepository.cs" />
-    <Compile Include="Concrete\CartsRepository.cs" />
+    <Compile Include="Concrete\CartRepository.cs" />
     <Compile Include="Concrete\ProductRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

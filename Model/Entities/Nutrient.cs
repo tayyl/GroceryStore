@@ -9,7 +9,6 @@ namespace Model.Entities
     public class Nutrient
     {
         public int Id { get; set; }
-       // public uint Barcode { get; set; }
         public double CalorifiValue { get; set; }
         public double Fat { get; set; }
         public double SaturatedFat { get; set; }

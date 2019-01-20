@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿/<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -34,7 +34,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <div class="atepeppers">
-                    @Html.ActionLink("atepeppers", "Index", "Home", new { area = "" })
+                    @Html.ActionLink("atepeppers", "Index", "Home")
                 </div>
             </div>
             <div class="navbar-collapse collapse">
@@ -42,7 +42,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Strona główna", "Index", "Home")</li>
                     <li><a href="http://projektweb.hopto.org/">Informacje</a></li>
-                    <li>@Html.ActionLink("Artykuły", "Index3", "Home")</li>
+                    <li>@Html.ActionLink("Artykuły", "Index", "Product")</li>
                     <li>@Html.Partial("_LoginPartial")</li>
                 </ul>
                

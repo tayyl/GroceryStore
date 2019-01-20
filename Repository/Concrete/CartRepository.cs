@@ -6,18 +6,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using Microsoft.AspNet.Identity;
+using Model;
+using Microsoft.AspNet.Identity.EntityFramework;
+
 namespace Repository.Concrete
 {
-    class CartsRepository : BaseRepository, ICartsRepository
+    public class CartRepository : BaseRepository, ICartsRepository
     {
         public Task<bool> DeleteCartAsync(Cart Cart)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Cart> GetCart(int id)
+        //public async Task<Cart> GetCart(ApplicationUser applicationUser)
+        //{
+        //    Cart Cart = await context.Carts.FirstOrDefault(x => x.ApplicationUser == applicationUser);
+        //    return Cart;
+        //}
+
+        public async Task<Cart> GetCart(string identityUserId)
         {
-            throw new NotImplementedException();
+            Cart Cart = await context.Carts.FirstOrDefaultAsync(x => x.ApplicationUserId == identityUserId);
+            return Cart;
         }
 
         public Task<List<Cart>> GetCartsAsync()
@@ -31,7 +42,7 @@ namespace Repository.Concrete
                 return false;
             try
             {
-                context.Entry(Cart).State = Cart.Id == default(string) ? EntityState.Added : EntityState.Modified;
+                context.Entry(Cart).State = Cart.ApplicationUserId == default(string) ? EntityState.Added : EntityState.Modified;
 
                 await context.SaveChangesAsync();
             }
@@ -41,5 +52,6 @@ namespace Repository.Concrete
             }
             return true;
         }
+
     }
 }

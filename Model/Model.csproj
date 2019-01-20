@@ -66,33 +66,17 @@
     <Compile Include="Entities\Price.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Shop.cs" />
-    <Compile Include="Migrations\201901181811397_init.cs" />
-    <Compile Include="Migrations\201901181811397_init.Designer.cs">
-      <DependentUpon>201901181811397_init.cs</DependentUpon>
+    <Compile Include="Migrations\201901200036009_another.cs" />
+    <Compile Include="Migrations\201901200036009_another.Designer.cs">
+      <DependentUpon>201901200036009_another.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901191202142_cart.cs" />
-    <Compile Include="Migrations\201901191202142_cart.Designer.cs">
-      <DependentUpon>201901191202142_cart.cs</DependentUpon>
+    <Compile Include="Migrations\201901200135212_update.cs" />
+    <Compile Include="Migrations\201901200135212_update.Designer.cs">
+      <DependentUpon>201901200135212_update.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901191205232_cart_new.cs" />
-    <Compile Include="Migrations\201901191205232_cart_new.Designer.cs">
-      <DependentUpon>201901191205232_cart_new.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901191248276_rebuild_cart.cs" />
-    <Compile Include="Migrations\201901191248276_rebuild_cart.Designer.cs">
-      <DependentUpon>201901191248276_rebuild_cart.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901191252464_rebuiltcart.cs" />
-    <Compile Include="Migrations\201901191252464_rebuiltcart.Designer.cs">
-      <DependentUpon>201901191252464_rebuiltcart.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901191500353_ddd.cs" />
-    <Compile Include="Migrations\201901191500353_ddd.Designer.cs">
-      <DependentUpon>201901191500353_ddd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901191509013_dddd.cs" />
-    <Compile Include="Migrations\201901191509013_dddd.Designer.cs">
-      <DependentUpon>201901191509013_dddd.cs</DependentUpon>
+    <Compile Include="Migrations\201901200826431_update1.cs" />
+    <Compile Include="Migrations\201901200826431_update1.Designer.cs">
+      <DependentUpon>201901200826431_update1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -102,26 +86,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901181811397_init.resx">
-      <DependentUpon>201901181811397_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901200036009_another.resx">
+      <DependentUpon>201901200036009_another.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901191202142_cart.resx">
-      <DependentUpon>201901191202142_cart.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901200135212_update.resx">
+      <DependentUpon>201901200135212_update.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901191205232_cart_new.resx">
-      <DependentUpon>201901191205232_cart_new.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901191248276_rebuild_cart.resx">
-      <DependentUpon>201901191248276_rebuild_cart.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901191252464_rebuiltcart.resx">
-      <DependentUpon>201901191252464_rebuiltcart.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901191500353_ddd.resx">
-      <DependentUpon>201901191500353_ddd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901191509013_dddd.resx">
-      <DependentUpon>201901191509013_dddd.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901200826431_update1.resx">
+      <DependentUpon>201901200826431_update1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

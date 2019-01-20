@@ -12,7 +12,7 @@ namespace Model.Configurations
     {
         public CartConfiguration()
         {
-            Property(x => x.Id).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            HasKey(x => x.ApplicationUserId);
         }
     }
 }

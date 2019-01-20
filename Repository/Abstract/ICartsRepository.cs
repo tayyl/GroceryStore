@@ -1,4 +1,5 @@
-﻿using Model.Entities;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using Model.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace Repository.Abstract
 {
     public interface ICartsRepository
     {
-        Task<Cart> GetCart(int id);
+        Task<Cart> GetCart(string identityUserId);
         Task<List<Cart>> GetCartsAsync();
         Task<bool> SaveCartAsync(Cart product);
         Task<bool> DeleteCartAsync(Cart product);

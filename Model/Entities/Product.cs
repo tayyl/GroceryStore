@@ -15,7 +15,6 @@ namespace Model.Entities
         public byte[] Image { get; set; }
         public string Type { get; set; }
 
-        public int PriceId { get; set; }
         public virtual ICollection<Price> Prices{ get; set; }
         //public int NutrientId { get; set; }
         public virtual Nutrient Nutrient { get; set; }
