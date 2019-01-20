@@ -4,11 +4,10 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2>Usuń produkt</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Na pewno chcesz usunąć ten produkt?</h3>
 <div>
-    <h4>Product</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -40,7 +39,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Image)
+            <img src="data:image;base64,@System.Convert.ToBase64String((byte[])Model.Image)" width="50" height="50" />
         </dd>
 
         <dt>
@@ -50,12 +49,9 @@
         <dd>
             @Html.DisplayFor(model => model.Type)
         </dd>
-
-
+        
         <dt>
-
-            @Html.LabelFor(model => model.Prices.ElementAtOrDefault(0).Value, htmlAttributes: new { @class = "control-label col-md-2" })
-        </dt>
+            @Html.LabelFor(model => model.Prices.ElementAtOrDefault(0).Value)</dt>
 
         <dd>
             @Html.DisplayFor(model => model.Prices.ElementAtOrDefault(0).Value, new { htmlAttributes = new { @class = "form-control" } })
@@ -67,8 +63,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Usuń" class="btn btn-default" /> |
+            @Html.ActionLink("Wróć", "Index")
         </div>
     }
 </div>
