@@ -19,6 +19,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity.Validation;
 using System;
 using static Model.AppContext;
+using X.PagedList;
 
 namespace WebApplication1.Controllers
 {
@@ -27,10 +28,10 @@ namespace WebApplication1.Controllers
         private Model.AppContext db = new Model.AppContext();
 
         // GET: Product
-        public async Task<ActionResult> Index()
-        {
-            return View(await db.Products.ToListAsync());
-        }
+        //public async Task<ActionResult> Index()
+        //{
+        //    return View(await db.Products.ToListAsync());
+        //}
 
         // GET: Product/Details/5
         [Authorize]
@@ -86,7 +87,50 @@ namespace WebApplication1.Controllers
 
             return View(product);
         }
+        public async Task<ActionResult> Index(int? page, string sortOrder, string currentFilter, string searchString)
+        {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
 
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+            //var products = db.Products.AsQueryable();
+            var products = from s in db.Products.AsQueryable()
+                           select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                products = products.Where(s => s.Name.Contains(searchString));
+
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    products = products.OrderByDescending(s => s.Name);
+                    break;
+                default:  // Name ascending 
+                    products = products.OrderBy(s => s.Name);
+                    break;
+            }
+
+            //products = db.Products.AsQueryable();
+            var pageNumber = page ?? 1;
+            var pageSize = 3;
+            var onePageOfProducts = products.OrderBy(o => o.Barcode).ToPagedList(pageNumber, pageSize);
+            ViewBag.OnePageOfProducts = onePageOfProducts;
+            return View(onePageOfProducts);
+
+        }
         // GET: Product/Edit/5
         [Authorize]
         public async Task<ActionResult> Edit(int? id)
