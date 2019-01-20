@@ -11,10 +11,22 @@ namespace Repository.Concrete
 {
     public class CartItemsRepository : BaseRepository, ICartItemsRepository
         {
-            public Task<bool> DeleteCartItemAsync(CartItem CartItem)
+            public async Task<bool> DeleteCartItemAsync(CartItem CartItem)
             {
-                throw new NotImplementedException();
+            if (CartItem == null)
+                return false;
+            context.CartItems.Remove(CartItem);
+
+            try
+            {
+                await context.SaveChangesAsync();
             }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
 
             //public async Task<CartItem> GetCartItem(ApplicationUser applicationUser)
             //{
@@ -22,20 +34,22 @@ namespace Repository.Concrete
             //    return CartItem;
             //}
 
-            public async Task<CartItem> GetCartItem(int Id)
+            public CartItem GetCartItem(int Id)
             {
-                CartItem CartItem = await context.CartItems.FirstOrDefaultAsync(x => x.Id == Id);
+                CartItem CartItem = context.CartItems.FirstOrDefault(x => x.Id == Id);
 
                 return CartItem;
             }
             public async Task<CartItem> GetCartItemAsyncProduct(int productId)
-        {
-            CartItem cartItem = await context.CartItems.FirstOrDefaultAsync(x => x.Product.Id == productId);
-            return cartItem;
-        }
-            public Task<List<CartItem>> GetCartItemsAsync(int CartId)
             {
-                throw new NotImplementedException();
+                CartItem cartItem = await context.CartItems.FirstOrDefaultAsync(x => x.Product.Id == productId);
+                return cartItem;
+            }
+            public async Task<CartItem> GetCartItemAsync(int CartId)
+            {
+                CartItem CartItem = await context.CartItems.FirstOrDefaultAsync(x => x.Id == CartId);
+
+                return CartItem;
             }
 
             public async Task<bool> SaveCartItemAsync(CartItem CartItem)
