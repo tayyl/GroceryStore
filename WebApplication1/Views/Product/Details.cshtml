@@ -4,10 +4,9 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Szczegóły</h2>
 
 <div>
-    <h4>Product</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -39,7 +38,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Image)
+                <img src="data:image;base64,@System.Convert.ToBase64String((byte[])Model.Image)" width="50" height="50" />
+           
         </dd>
 
         <dt>
@@ -51,8 +51,7 @@
         </dd>
 
         <dt>
-
-            @Html.LabelFor(model => model.Prices.ElementAtOrDefault(0).Value, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Prices.ElementAtOrDefault(0).Value)
         </dt>
 
         <dd>
@@ -62,6 +61,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edytuj", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Wróć", "Index")
 </p>
