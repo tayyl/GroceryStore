@@ -281,4 +281,17 @@ footer {
     font-size: 30px;
     font-family: 'Ryman Eco';
 }
- 
+
+#koszyk {
+    width: 55px;
+    height: 55px;
+    background-color: #330a46;
+}
+#koszyk:hover {
+        background-color: #45155a;
+        cursor: pointer;
+}
+#koszyk img{
+    left: 10px;
+    top: 10px;
+}
