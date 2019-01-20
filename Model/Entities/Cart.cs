@@ -9,7 +9,7 @@ namespace Model.Entities
 {
     public class Cart
     {
-        public virtual string ApplicationUserId { get; set; }
+        public int Id { get; set; }
         public virtual ICollection<CartItem> Items { get; set; }
             = new Collection<CartItem> { };
     }

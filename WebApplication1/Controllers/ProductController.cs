@@ -164,20 +164,29 @@ namespace WebApplication1.Controllers
             UserManager<ApplicationUser> manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
             ApplicationUser currentUser = manager.FindById(currentUserId);
             if (currentUser is null)
-                return Redirect("../Account/Login");
-            currentUser.Cart = await cartRepository.GetCart(currentUser.Id);
-     
-            if (currentUser.Cart is null)
-            {
-                currentUser.Cart = new Cart();
-                currentUser.Cart.ApplicationUserId = currentUser.Id;
-            }
+                return Redirect("../../Account/Login");
+            
+            //Cart cart = await cartRepository.GetCart(currentUser.CartId);
+            //if (cart is null)
+            //{
+            //    cart = new Cart();
+            //    //db.Carts.Add(cart); 
+            //}
             Product product = db.Products.Where(o => o.Id == id).Single();
-            var item = currentUser.Cart.Items.SingleOrDefault(o => o.Product == product);
-            if (item != default(CartItem))
-                item.Amount++;
+            var query = from d in db.CartItems
+                            where d.Product == product
+                            where d.TempId == currentUser.Id
+                            select d;
+            var item = query.ToList();
+            if (item[0] != default(CartItem))
+                item[0].Amount++;
             else
-                currentUser.Cart.Items.Add(new CartItem(product));
+            {
+                var newItem = new CartItem(product);
+                newItem.TempId = currentUser.Id;
+                
+                db.CartItems.Add(newItem);
+            }
             try
             {
                 await db.SaveChangesAsync();

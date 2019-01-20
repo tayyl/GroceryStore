@@ -25,9 +25,9 @@ namespace Repository.Concrete
         //    return Cart;
         //}
 
-        public async Task<Cart> GetCart(string identityUserId)
+        public async Task<Cart> GetCart(int Id)
         {
-            Cart Cart = await context.Carts.FirstOrDefaultAsync(x => x.ApplicationUserId == identityUserId);
+            Cart Cart = await context.Carts.FirstOrDefaultAsync(x => x.Id == Id);
          
             return Cart;
         }
@@ -43,7 +43,7 @@ namespace Repository.Concrete
                 return false;
             try
             {
-                context.Entry(Cart).State = Cart.ApplicationUserId == default(string) ? EntityState.Added : EntityState.Modified;
+                context.Entry(Cart).State = Cart.Id == default(int) ? EntityState.Added : EntityState.Modified;
 
                 await context.SaveChangesAsync();
             }

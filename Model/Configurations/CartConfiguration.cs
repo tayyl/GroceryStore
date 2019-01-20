@@ -11,9 +11,9 @@ namespace Model.Configurations
     public class CartConfiguration : EntityTypeConfiguration<Cart>
     {
         public CartConfiguration()
-        {
-            HasKey(x => x.ApplicationUserId);
-            HasMany(x => x.Items).WithRequired(x => x.Cart).WillCascadeOnDelete();
+        { 
+            Property(x => x.Id).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            HasMany(x => x.Items);
         }
     }
 }

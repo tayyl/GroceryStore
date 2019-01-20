@@ -10,7 +10,7 @@ namespace Repository.Abstract
 {
     public interface ICartsRepository
     {
-        Task<Cart> GetCart(string identityUserId);
+        Task<Cart> GetCart(int Id);
         Task<List<Cart>> GetCartsAsync();
         Task<bool> SaveCartAsync(Cart product);
         Task<bool> DeleteCartAsync(Cart product);

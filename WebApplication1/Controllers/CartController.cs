@@ -31,8 +31,8 @@ namespace WebApplication1.Controllers
                 return Redirect("../Account/Login");
            else
            {
-                currentUser.Cart = await context.GetCart(currentUser.Id);
-                return View(currentUser.Cart);
+                Cart cart = await context.GetCart(currentUser.CartId);
+                return View(cart);
            }           
         }
 

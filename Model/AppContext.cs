@@ -19,7 +19,7 @@ namespace Model
     {
         public class ApplicationUser : IdentityUser
         {
-            public Cart Cart { get; set; }
+            public int CartId { get; set; }
             public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
             {
                 // Element authenticationType musi pasować do elementu zdefiniowanego w elemencie CookieAuthenticationOptions.AuthenticationType
@@ -50,7 +50,7 @@ namespace Model
             modelBuilder.Configurations.Add(new PriceConfiguration());
             modelBuilder.Configurations.Add(new CartConfiguration());
             modelBuilder.Configurations.Add(new CartItemConfiguration());
-
+            
             base.OnModelCreating(modelBuilder);
         }
 
