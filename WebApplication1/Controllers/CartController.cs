@@ -7,13 +7,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Security.Principal;
 using Repository.Concrete;
+using static Model.AppContext;
 
 namespace WebApplication1.Controllers
 {
     public class CartController :Controller
     {
-        private ApplicationUser CheckCurrentUser()
+        public ApplicationUser CheckCurrentUser()
         {
             AppContext _entities = new Model.AppContext();
             string currentUserId = User.Identity.GetUserId();

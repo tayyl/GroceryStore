@@ -13,6 +13,7 @@ namespace Model.Configurations
         public CartConfiguration()
         {
             HasKey(x => x.ApplicationUserId);
+            HasMany(x => x.Items).WithRequired(x => x.Cart).WillCascadeOnDelete();
         }
     }
 }

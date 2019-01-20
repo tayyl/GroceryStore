@@ -9,7 +9,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Model;
+using Model.Entities;
 using WebApplication1.Models;
+using static Model.AppContext;
 
 namespace WebApplication1.Controllers
 {

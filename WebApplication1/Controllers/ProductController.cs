@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -11,6 +11,14 @@ using Model;
 using Model.Entities;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
+using System.Web.UI.WebControls;
+using System.IO;
+using Microsoft.AspNet.Identity;
+using Repository.Concrete;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity.Validation;
+using System;
+using static Model.AppContext;
 
 namespace WebApplication1.Controllers
 {
@@ -42,6 +50,7 @@ namespace WebApplication1.Controllers
         // GET: Product/Create
         public ActionResult Create()
         {
+
             return View();
         }
 
@@ -50,12 +59,18 @@ namespace WebApplication1.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(/*[Bind(Include = "Id,Barcode,Name,Description,Image,Type,PriceId")]*/ Product product, Nutrient nutrient, Collection<Price> prices, Price price)
+        public async Task<ActionResult> Create(/*[Bind(Include = "Id,Barcode,Name,Description,Image,Type,PriceId")]*/ Product product, Nutrient nutrient, Collection<Price> prices, Price price, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
+                byte[] imgData;
+                using (BinaryReader reader = new BinaryReader(file.InputStream))
+                {
+                    imgData = reader.ReadBytes((int)file.InputStream.Length);
+                }
+                product.Image = imgData;
                 price.Product = product;
-                price.CreationDate = DateTime.Now;
+                price.CreationDate = System.DateTime.Now;
                 nutrient.Product = product;
                 product.Nutrient = nutrient;
                 //product.Prices = new List<Price> { price };
@@ -89,10 +104,16 @@ namespace WebApplication1.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Barcode,Name,Description,Image,Type,PriceId")] Product product)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Barcode,Name,Description,Image,Type,PriceId")] Product product, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
+                byte[] imgData;
+                using (BinaryReader reader = new BinaryReader(file.InputStream))
+                {
+                    imgData = reader.ReadBytes((int)file.InputStream.Length);
+                }
+                product.Image = imgData;
                 db.Entry(product).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -133,6 +154,50 @@ namespace WebApplication1.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public async Task<ActionResult> AddToCart(int id)
+        {
+            // TODO: Code duplicate form CartController
+            CartRepository cartRepository = new CartRepository();
+            string currentUserId = User.Identity.GetUserId();
+            UserManager<ApplicationUser> manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            ApplicationUser currentUser = manager.FindById(currentUserId);
+            if (currentUser is null)
+                return Redirect("../Account/Login");
+            currentUser.Cart = await cartRepository.GetCart(currentUser.Id);
+     
+            if (currentUser.Cart is null)
+            {
+                currentUser.Cart = new Cart();
+                currentUser.Cart.ApplicationUserId = currentUser.Id;
+            }
+            Product product = db.Products.Where(o => o.Id == id).Single();
+            var item = currentUser.Cart.Items.SingleOrDefault(o => o.Product == product);
+            if (item != default(CartItem))
+                item.Amount++;
+            else
+                currentUser.Cart.Items.Add(new CartItem(product));
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Debug.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Debug.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

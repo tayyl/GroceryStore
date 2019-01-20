@@ -11,6 +11,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Model;
+using Model.Entities;
+using static Model.AppContext;
 
 namespace WebApplication1
 {

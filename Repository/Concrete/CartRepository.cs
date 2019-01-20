@@ -28,6 +28,7 @@ namespace Repository.Concrete
         public async Task<Cart> GetCart(string identityUserId)
         {
             Cart Cart = await context.Carts.FirstOrDefaultAsync(x => x.ApplicationUserId == identityUserId);
+         
             return Cart;
         }
 

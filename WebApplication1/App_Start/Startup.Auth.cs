@@ -7,6 +7,7 @@ using Microsoft.Owin.Security.Google;
 using Model;
 using Owin;
 using WebApplication1.Models;
+using static Model.AppContext;
 
 namespace WebApplication1
 {
