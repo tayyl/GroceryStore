@@ -33,9 +33,10 @@ namespace Model.Migrations
                 CalorifiValue = 436,
                 Fat = 13,
                 SaturatedFat = 0.8,
-                Carbohydrate = 436,
+                Carbohydrate = 67,
                 Sugar = 4.6,
                 Fiber = 3.6,
+                Protein=11,
                 Salt = 2.5
             };
             Price kprice = new Price {
