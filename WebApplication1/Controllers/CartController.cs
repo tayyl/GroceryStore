@@ -32,12 +32,7 @@ namespace WebApplication1.Controllers
            else
            {
                 Cart cart = await context.GetCart(currentUser.CartId);
-                var cartids = cart.CartItems.Select(o => o.Id).ToList();
-                var amounts = cart.CartItems.Select(o => o.Amount).ToList();
-                var products = (await (new ProductRepository()).GetProductsAsync()).Where(o => cartids.Contains(o.Id));
-
-                return View(products.Zip(cart.CartItems, (k, v) => new { Key = k, Value = v })
-                     .ToDictionary(x => x.Key, x => x.Value));
+                return View(cart.CartItems);
            }           
         }
         public async Task<ActionResult> Add(int Id)

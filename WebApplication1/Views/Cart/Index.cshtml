@@ -1,6 +1,6 @@
 ﻿@using System.Collections;
 @using Model.Entities;
-@model IDictionary<Product, CartItem>
+@model IEnumerable<CartItem>
 
 @{
     ViewBag.Title = "Koszyk";
@@ -25,18 +25,18 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            <img src="data:image;base64,@System.Convert.ToBase64String((byte[]) item.Key.Image)" width="75" height="75" />
+            <img src="data:image;base64,@System.Convert.ToBase64String((byte[]) item.Product.Image)" width="75" height="75" />
         </td>
          
         <td>
-            @Html.DisplayFor(model => item.Key.Name)
+            @Html.DisplayFor(model => item.Product.Name)
         </td>
         <td>
-            @Html.DisplayFor(model => item.Value.Amount)
+            @Html.DisplayFor(model => item.Amount)
         </td>
         <td>
-            @Html.ActionLink("+", "Add", new { id=item.Value.Id}) |
-            @Html.ActionLink("-", "Remove", new { id=item.Value.Id}) @*|
+            @Html.ActionLink("+", "Add", new { id=item.Id}) |
+            @Html.ActionLink("-", "Remove", new { id=item.Id}) @*|
             @Html.ActionLink("Delete", "Delete", new { id=item.Key.Id })*@
         </td>
     </tr>
