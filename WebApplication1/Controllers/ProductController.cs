@@ -74,7 +74,7 @@ namespace WebApplication1.Controllers
                 }
                 product.Image = imgData;
                 price.Product = product;
-                price.CreationDate = System.DateTime.Today;
+                price.CreationDate = System.DateTime.Now;
                 nutrient.Product = product;
                 product.Nutrient = nutrient;
                 //product.Prices = new List<Price> { price };
