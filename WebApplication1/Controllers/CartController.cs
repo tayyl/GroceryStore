@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Security.Principal;
 using Repository.Concrete;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using static Model.AppContext;
 
 namespace WebApplication1.Controllers
@@ -32,6 +34,10 @@ namespace WebApplication1.Controllers
            else
            {
                 Cart cart = await context.GetCart(currentUser.CartId);
+                if(cart is null)
+                {
+                    cart = new Cart { };
+                }
                 return View(cart.CartItems);
            }           
         }
