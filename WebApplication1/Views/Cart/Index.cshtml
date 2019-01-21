@@ -4,6 +4,8 @@
 
 @{
     ViewBag.Title = "Koszyk";
+    int ilosc = 0;
+    decimal suma = 0;
 }
 
 
@@ -13,37 +15,55 @@
     <table class="table">
         <tr>
             <th>
-                Image
+                Zdjęcie
             </th>
             <th>
-                Name
+                Nazwa
             </th>
             <th>
-                Amount
+                Ilość
             </th>
+            <th>Cena Za sztukę</th>
+            <th>Łącznie</th>
             <th></th>
         </tr>
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    <img src="data:image;base64,@System.Convert.ToBase64String((byte[])item.Product.Image)" width="75" height="75" />
-                </td>
+        <tr>
+            <td>
+                <img src="data:image;base64,@System.Convert.ToBase64String((byte[])item.Product.Image)" width="75" height="75" />
+            </td>
 
-                <td>
-                    @Html.DisplayFor(model => item.Product.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => item.Amount)
-                </td>
-                <td>
-                    @Html.ActionLink("+", "Add", new { id = item.Id }) |
-                    @Html.ActionLink("-", "Remove", new { id = item.Id }) @*|
-                        @Html.ActionLink("Delete", "Delete", new { id=item.Key.Id })*@
-                </td>
-            </tr>
+            <td>
+                @Html.DisplayFor(model => item.Product.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Amount) 
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Product.Prices.ElementAtOrDefault(0).Value) zł
+            </td>
+            <td>@{decimal howmuch = item.Amount * item.Product.Prices.ElementAtOrDefault(0).Value;
+            }
+            @howmuch zł
+              </td>
+            <td>
+                @Html.ActionLink("+", "Add", new { id = item.Id }) |
+                @Html.ActionLink("-", "Remove", new { id = item.Id }) @*|
+            @Html.ActionLink("Delete", "Delete", new { id=item.Key.Id })*@
+            </td>
+        </tr>
+            suma += item.Product.Prices.ElementAtOrDefault(0).Value*item.Amount;
         }
+        <tr>
+            <td><b>Podsumowanie</b></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>@suma zł</td>
+            <td></td>
+        </tr>
     </table>
 }
 else
