@@ -60,6 +60,8 @@ namespace WebApplication1.Controllers
                 await cartItemsRepository.SaveCartItemAsync(cartItem); //TODO: Obsluga result
             return RedirectToAction("Index");
         }
+        
+
         //public async Task<ActionResult> Index(Cart cart)
         //{
         //    CartsRepository repository = new CartsRepository();
