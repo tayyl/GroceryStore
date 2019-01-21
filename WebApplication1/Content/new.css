@@ -301,3 +301,17 @@ footer {
 li a, li a:hover, li a:active, li a:link{
     text-decoration: none;
 }
+.pagination .active span {
+    background-color: #330a46 !important;
+    border-color: #330a46;
+}
+
+.Search_Engine{
+    float: right;
+}
+
+#row_head {
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}

@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Security.Principal;
 using Repository.Concrete;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using static Model.AppContext;
 
 namespace WebApplication1.Controllers
@@ -32,12 +34,11 @@ namespace WebApplication1.Controllers
            else
            {
                 Cart cart = await context.GetCart(currentUser.CartId);
-                var cartids = cart.CartItems.Select(o => o.Id).ToList();
-                var amounts = cart.CartItems.Select(o => o.Amount).ToList();
-                var products = (await (new ProductRepository()).GetProductsAsync()).Where(o => cartids.Contains(o.Id));
-
-                return View(products.Zip(cart.CartItems, (k, v) => new { Key = k, Value = v })
-                     .ToDictionary(x => x.Key, x => x.Value));
+                if(cart is null)
+                {
+                    cart = new Cart { };
+                }
+                return View(cart.CartItems);
            }           
         }
         public async Task<ActionResult> Add(int Id)

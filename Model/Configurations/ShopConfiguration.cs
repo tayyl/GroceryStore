@@ -13,7 +13,7 @@ namespace Model.Configurations
         public ShopConfiguration()
         {
             Property(x => x.Id).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
-            //Has
+            
         }
     }
 }
