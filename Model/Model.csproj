@@ -66,12 +66,28 @@
     <Compile Include="Entities\Price.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Shop.cs" />
+    <Compile Include="Migrations\201901202241261_u.cs" />
+    <Compile Include="Migrations\201901202241261_u.Designer.cs">
+      <DependentUpon>201901202241261_u.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901202244125_u1.cs" />
+    <Compile Include="Migrations\201901202244125_u1.Designer.cs">
+      <DependentUpon>201901202244125_u1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201901202241261_u.resx">
+      <DependentUpon>201901202241261_u.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901202244125_u1.resx">
+      <DependentUpon>201901202244125_u1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
