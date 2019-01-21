@@ -122,7 +122,7 @@
 
 .TextBox {
     background-color: rgba(0, 0, 0,0.5);
-  
+    padding: 10px 0px 10px 0px;
 }
     .TextBox p, .TextBox h1 {
         opacity: 1;
@@ -261,8 +261,13 @@ footer {
     margin: 10px auto;
     min-height: 55px;
     background-color: #45155a !important;
-}
 
+}
+footer p{
+    text-align:center;
+    padding-top:20px;
+    color:white;
+}
 
 .col-md-3:hover {
     transition: 0.5s;
@@ -306,8 +311,11 @@ li a, li a:hover, li a:active, li a:link{
     border-color: #330a46;
 }
 
-.Search_Engine{
+.Search_Engine {
     float: right;
+    color: #330a46;
+    background-color: #330a46 !important;
+
 }
 
 #row_head {
