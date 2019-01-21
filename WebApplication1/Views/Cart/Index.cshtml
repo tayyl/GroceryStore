@@ -49,8 +49,9 @@
             @howmuch zł
               </td>
             <td>
-                @Html.ActionLink("+", "Add", new { id = item.Id }) |
-                @Html.ActionLink("-", "Remove", new { id = item.Id }) @*|
+                @Html.ActionLink("+", "Add", new { id = item.Id },  new { @class = "btn btn-default" } ) 
+      
+                @Html.ActionLink("-", "Remove", new { id = item.Id }, new { @class = "btn btn-default" }) @*|
             @Html.ActionLink("Delete", "Delete", new { id=item.Key.Id })*@
             </td>
         </tr>
